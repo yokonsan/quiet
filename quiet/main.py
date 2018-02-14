@@ -6,6 +6,12 @@ from flask import send_from_directory
 from . import app
 
 
+@app.route('/blog.css')
+def blog_css():
+
+    return send_from_directory('static', 'css/blog.css')
+
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -43,7 +49,8 @@ def page(page):
     return send_from_directory('static', 'generated/page/{page}.html'.format(page=page))
 
 
-@app.route('/post/<int:year>/<int:month>/<post>')
+@app.route('/post/<year>/<month>/<post>')
 def post(year, month, post):
 
-    return send_from_directory('static', 'generated/post/{year}/{month}/{post}.html'.format(year=year,month=month,post=post))
+    return send_from_directory('static',
+                'generated/post/{year}/{month}/{post}.html'.format(year=year, month=month, post=post))

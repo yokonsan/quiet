@@ -68,11 +68,25 @@ class Generate(object):
 
         generated = os.path.join(self._generated_folder, path)
         filename = os.path.splitext(file)[0] + '.html'
+        if file_type == 'post':
+            filename = self._set_post_filename(filename) + '.html'
         if not os.path.exists(generated):
             os.makedirs(generated)
         with codecs.open(generated + '/' + filename, 'w', 'utf-8') as f:
             f.write(html)
             print('保存成功：', file)
+
+    def _set_post_filename(self, filename):
+        """
+        根据文章文件名，设置文章文件名为文章的 url
+        :param filename:
+        :return:
+        """
+        filenames = [p['filename'] for p in self._posts]
+        index = filenames.index(filename)
+        url = self._posts[index]['url']
+
+        return url
 
     def update_post_data(self, file, data):
         """
@@ -104,7 +118,7 @@ class Generate(object):
         """
         with codecs.open(file, mode="r", encoding="utf-8", errors='ignore') as f:
             body = f.read()
-            md = Markdown(extensions=['fenced_code', 'codehilite(css_class=highlight,linenums=True)',
+            md = Markdown(extensions=['fenced_code', 'codehilite(css_class=highlight,linenums=None)',
                                       'meta', 'admonition', 'tables'])
             content = md.convert(body)
             meta = md.Meta if hasattr(md, 'Meta') else {}
@@ -133,10 +147,11 @@ class Generate(object):
                 return html
 
     def update_tags(self, tag, post_id):
-        dict = {'post_id': []}
+
         tags = [t['tag'] for t in self._tags]
         for i in tag:
             if i not in tags:
+                dict = {'post_id': []}
                 dict['tag'] = i
                 dict['post_id'].append(post_id)
                 self._tags.append(dict)
@@ -147,17 +162,18 @@ class Generate(object):
         self.render_tag_html()
 
     def update_categories(self, category, post_id):
-        dict = {'post_id': []}
+
         categories = [t['category'] for t in self._categories]
-        for i in category:
-            if i not in categories:
-                dict['category'] = i
-                dict['post_id'].append(post_id)
-                self._categories.append(dict)
-            elif i in categories:
-                index = categories.index(i)
-                self._categories[index]['post_id'].append(post_id)
-            self.render_cate_posts(i)
+
+        if category not in categories:
+            dict = {'post_id': []}
+            dict['category'] = category
+            dict['post_id'].append(post_id)
+            self._categories.append(dict)
+        elif category in categories:
+            index = categories.index(category)
+            self._categories[index]['post_id'].append(post_id)
+        self.render_cate_posts(category)
         self.render_cate_html()
 
     def render_index_html(self):
@@ -253,7 +269,7 @@ class Generate(object):
         id = self._default_adder_id
 
         self.update_tags(tag, id)
-        self.update_categories(tag, id)
+        self.update_categories(category, id)
         data = {
             'datetime': date,
             'tag': tag,
