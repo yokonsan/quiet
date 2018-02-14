@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% block header_title %}
+{{ title }}
+{% endblock %}
 {% block content %}
-
+{% if posts %}
+{% for post in posts %}
+<ul>
+    <li>{{post.title}}</li>
+</ul>
+{% endfor %}
+{% endif %}
 {% endblock %}

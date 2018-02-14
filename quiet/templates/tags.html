@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% block header_title %}
+{{ title }}
+{% endblock %}
 {% block content %}
-
+{% if tags %}
+<ul>
+    {% for tag in tags %}
+    <li>{{tag}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

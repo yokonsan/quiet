@@ -1,6 +1,9 @@
 body {
 	margin: 0;
 	padding: 0;
+	min-height: 100%;
+    position: absolute;
+    width: 100%;
 	font-family: "Open Sans", sans-serif;
     font-size: 15px;
     color: #4b505a;
@@ -12,12 +15,58 @@ body {
 
 h2 { font-size: 20px; }
 
-h2:after {
+h2:after,h3:after,h4:after,h5:after,h6:after {
     display: block;
     content: " ";
-    margin-top: 10px;
+    margin-top: 8px;
     width: 40px;
     border-bottom: 3px solid rgb(21, 124, 226);
+}
+
+blockquote {
+	color: #666;
+    border-left: 4px solid #ddd;
+    padding-left: 20px;
+    margin-left: 0;
+    font-size: 14px;
+    font-style: italic;
+}
+
+p a {
+text-decoration: none;
+color: #157ce2;
+padding: 2px 3px;
+}
+
+p a:hover {
+	color: #fff;
+	background-color: #157ce2;
+	border-radius: 3px;
+}
+
+table {
+  	border-collapse:collapse;
+	width: 100%;
+}
+
+table,th, td {
+  	border: 1px solid #999;
+}
+
+img {
+	margin: 0 auto;
+    display: block;
+	max-width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+pre {
+	padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #f6f6f6;
 }
 
 .float-left { float: left; }
@@ -151,6 +200,8 @@ li.post-item a:hover {
 	background: #333 url(../images/footer-bg.png) left top repeat;
 	bottom: 0;
 	width: 100%;
+	height: 88px;
+    position: absolute;
 }
 
 #footer p {

@@ -1,4 +1,25 @@
 {% extends "base.html" %}
-{% block content %}
+{% block head %}
+<link rel="shortcut icon" href="../../../static/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../../static/images/favicon.ico}" type="image/x-icon">
+<link href="../../../static/css/blog.css" rel="stylesheet">
+<link href="../../../static/lib/fontello.css" rel="stylesheet">
+<link href="../../../static/lib/pygments/default.css" rel="stylesheet">
+{% endblock %}
+{% block styles %}
 
+{% endblock %}
+
+{% block header_title %}
+{{ data.title }}
+{% endblock %}
+
+{% block data %}
+<p class="header-date">
+    时间： {{ data.datetime }}, 分类： <a href="#">{{ data.category }}</a>
+</p>
+{% endblock %}
+
+{% block content %}
+{{ article }}
 {% endblock %}

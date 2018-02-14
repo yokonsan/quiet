@@ -3,10 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{% if title %}{{ title }}{% else %}Quiet{% endif %} - 安静</title>
-	<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-	{% block styles %}
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
+
+	{% block head %}
+	<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="../static/images/favicon.ico}" type="image/x-icon">
+	<link rel="stylesheet" href="../static/css/blog.css">
 	{% endblock %}
 </head>
 <body>
@@ -28,9 +29,16 @@
 
 			<div class="header-wrapper">
 				<div class="header-content">
-					<h1 class="header-title">Quiet</h1>
+					<h1 class="header-title">
+						{% block header_title %}
+						{% endblock %}
+					</h1>
+					{% block data %}{% endblock %}
 					<div class="underline"></div>
-					<p class="header-subtitle">沧浪之水清兮，可以濯吾缨，沧浪之水浊兮，可以濯吾足。</p>
+					<p class="header-subtitle">
+						{% block header_subtitle %}
+						{% endblock %}
+					</p>
 				</div>
 			</div>
 		</div>

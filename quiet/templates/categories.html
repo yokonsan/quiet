@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% block header_title %}
+{{ title }}
+{% endblock %}
 {% block content %}
-
+{% if categories %}
+{% for cate in categories %}
+<ul>
+    <li>{{cate.category}}</li>
+</ul>
+{% endfor %}
+{% endif %}
 {% endblock %}

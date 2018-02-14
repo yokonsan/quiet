@@ -1,10 +1,23 @@
 {% extends "base.html" %}
+
+{% block header_title %}
+
+{% endblock %}
+
+{% block header_subtitle %}
+
+{% endblock %}
+
 {% block content %}
 <h2>所有文章</h2>
 <ul class="post-list">
+    {% if posts %}
+    {% for p in posts %}
     <li class="post-item">
-        <span class="post-datetime">2018-02-11</span>
-        <a href="#" class="post-link">雨下一整晚</a>
+        <span class="post-datetime">{{ p.datetime }}</span>
+        <a href="/post/{{p.datetime.split('-')[0]}}/{{p.datetime.split('-')[1]}}/{{p.url}}" class="post-link">{{ p.title }}</a>
     </li>
+    {% endfor %}
+    {% endif %}
 </ul>
 {% endblock %}

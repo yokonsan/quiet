@@ -1,4 +1,20 @@
 {% extends "base.html" %}
-{% block content %}
+{% block head %}
+<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../static/images/favicon.ico}" type="image/x-icon">
+<link rel="stylesheet" href="../static/css/blog.css">
+{% endblock %}
 
+{% block header_title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+{% if posts %}
+{% for post in posts %}
+<ul>
+    <li>{{post.title}}</li>
+</ul>
+{% endfor %}
+{% endif %}
 {% endblock %}
