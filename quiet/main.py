@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-from flask import Flask, render_template
+from flask import send_from_directory
 
 from . import app
 
@@ -10,34 +10,40 @@ from . import app
 @app.route('/index')
 def index():
 
-    return render_template('index.html')
+    return send_from_directory('static', 'generated/page/index.html')
+
 
 @app.route('/tags')
 def tag():
 
-    return render_template('tags.html')
+    return send_from_directory('static', 'generated/page/tags.html')
 
-@app.route('/tag/<url>')
-def tag_post(url):
 
-    return render_template('tag.html')
+@app.route('/tag/<tag>')
+def tag_post(tag):
+
+    return send_from_directory('static', 'generated/page/{tag}.html'.format(tag=tag))
+
 
 @app.route('/categories')
 def category():
 
-    return render_template('categories.html')
+    return send_from_directory('static', 'generated/page/categories.html')
 
-@app.route('/category/<url>')
-def category_post(url):
 
-    return render_template('category.html')
+@app.route('/category/<category>')
+def category_post(category):
+
+    return send_from_directory('static', 'generated/page/{category}.html'.format(category=category))
+
 
 @app.route('/page/<page>')
 def page(page):
 
-    return render_template('page.html')
+    return send_from_directory('static', 'generated/page/{page}.html'.format(page=page))
 
-@app.route('/post/<int:year>/<int:month>/<url>')
-def post(year, month, url):
 
-    return render_template('post.html')
+@app.route('/post/<int:year>/<int:month>/<post>')
+def post(year, month, post):
+
+    return send_from_directory('static', 'generated/post/{year}/{month}/{post}.html'.format(year=year,month=month,post=post))
