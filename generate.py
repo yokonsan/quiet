@@ -53,7 +53,7 @@ class Generate(object):
                     md = os.path.join(root, name)
                     yield md
 
-    def save_html(self, file, html, file_type, year=None, month=None):
+    def save_html(self, file, html, file_type, year=None, month=None, extra_path=None):
         """
         保存 html 文件，到对应文件夹
         :param html: html
@@ -64,7 +64,10 @@ class Generate(object):
         try:
             path = os.path.join(file_type, year, month)
         except:
-            path = file_type
+            if extra_path:
+                path = os.path.join(file_type, extra_path)
+            else:
+                path = file_type
 
         generated = os.path.join(self._generated_folder, path)
         filename = os.path.splitext(file)[0] + '.html'
@@ -98,6 +101,8 @@ class Generate(object):
         generate_file = os.path.splitext(os.path.basename(file))[0] + '.html'
         data['filename'] = generate_file
         self._posts.append(data)
+        self.render_tag_posts(data['tag'])
+        self.render_cate_posts(data['category'])
         self.render_index_html()
 
     def update_page_data(self, file, meta):
@@ -142,7 +147,7 @@ class Generate(object):
                 template = self.env.get_template('page.html')
                 html = template.render(
                     page=content,
-                    title=meta.get('title') or os.path.splitext(file)[0]
+                    title=meta.get('title')[0] or os.path.splitext(file)[0]
                 )
                 return html
 
@@ -158,7 +163,7 @@ class Generate(object):
             elif i in tags:
                 index = tags.index(i)
                 self._tags[index]['post_id'].append(post_id)
-            self.render_tag_posts(i)
+
         self.render_tag_html()
 
     def update_categories(self, category, post_id):
@@ -173,7 +178,7 @@ class Generate(object):
         elif category in categories:
             index = categories.index(category)
             self._categories[index]['post_id'].append(post_id)
-        self.render_cate_posts(category)
+
         self.render_cate_html()
 
     def render_index_html(self):
@@ -184,7 +189,9 @@ class Generate(object):
         template = self.env.get_template('index.html')
         html = template.render(
             posts=self._posts,
-            title='首页'
+            title='首页',
+            header_title=SITE_TITLE,
+            header_subtitle=SITE_SUBTITLE
         )
         self.save_html('index.html', html, 'page')
 
@@ -195,8 +202,17 @@ class Generate(object):
         """
         template = self.env.get_template('tags.html')
         tags = [t['tag'] for t in self._tags]
+        counts = [len(t['post_id']) for t in self._tags]
+        dict = {}
+        data = []
+        for t, c in zip(tags, counts):
+            dict = {
+                'tag': t,
+                'count': c*10+100
+            }
+            data.append(dict)
         html = template.render(
-            tags=tags,
+            data=data,
             title='标签'
         )
         self.save_html('tags.html', html, 'page')
@@ -221,16 +237,17 @@ class Generate(object):
         """
         tag_posts = []
         for p in self._posts:
-            if tag in p.get('tag'):
-                tag_posts.append(p)
-
-        template = self.env.get_template('tag.html')
-        html = template.render(
-            posts=tag_posts,
-            title='标签: ' + tag
-        )
-        filename = tag + '.html'
-        self.save_html(filename, html, 'page')
+            for t in tag:
+                if t in p.get('tag'):
+                    tag_posts.append(p)
+                    template = self.env.get_template('tag.html')
+                    html = template.render(
+                        posts=tag_posts,
+                        title='标签: ' + t
+                    )
+                    filename = t + '.html'
+                    self.save_html(filename, html, 'page', extra_path='tag')
+                tag_posts = []
 
     def render_cate_posts(self, category):
         """
@@ -249,7 +266,7 @@ class Generate(object):
             title='分类: ' + category
         )
         filename = category + '.html'
-        self.save_html(filename, html, 'page')
+        self.save_html(filename, html, 'page', extra_path='category')
 
     def parse_meta(self, file, meta):
         """
