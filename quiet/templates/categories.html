@@ -1,12 +1,41 @@
 {% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<style>
+    ul.cate-list {
+        padding: 0;
+        list-style: none;
+    }
+    li.category {
+        display: inline-block;
+        margin: 10px;
+    }
+    li.category a {
+        color: #2479CC;
+        text-decoration: none;
+        transition: all 0.2s ease-out;
+    }
+    li.category a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
 {% block header_title %}
 {{ title }}
 {% endblock %}
+
+{% block header_subtitle %}
+所有的标分类都在这了
+{% endblock %}
+
 {% block content %}
 {% if categories %}
 {% for cate in categories %}
-<ul>
-    <li>{{cate.category}}</li>
+<ul class="cate-list">
+    <li class="category">
+        <a href="/category/{{cate}}">{{cate}}</a>
+    </li>
 </ul>
 {% endfor %}
 {% endif %}

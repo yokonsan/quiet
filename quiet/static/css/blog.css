@@ -69,10 +69,20 @@ pre {
     background: #f6f6f6;
 }
 
+code {
+	padding: 3px 5px;
+    border: 1px solid #ddd;
+    background: #f6f6f6;
+    border-radius: 2px;
+    margin: 0 5px;
+    color: #555;
+}
+
 .float-left { float: left; }
 
 .float-right { float: right; }
 
+.clear { clear: both; }
 
 /* header css */
 #header {
@@ -153,6 +163,25 @@ pre {
 	font-style: italic;
 }
 
+.header-date {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.header-date span {
+    margin: 0 10px;
+}
+
+.header-date a {
+    color: #eee;
+    text-decoration: underline;
+}
+
+.header-date a:hover {
+    color: #fff;
+    background: none;
+}
+
 
 /* main css */
 #main {
@@ -224,4 +253,5 @@ li.post-item a:hover {
 .footer-container a:hover {
 	color: #999;
 }
+
 

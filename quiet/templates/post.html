@@ -5,9 +5,19 @@
 <link href="../../../static/css/blog.css" rel="stylesheet">
 <link href="../../../static/lib/fontello.css" rel="stylesheet">
 <link href="../../../static/lib/pygments/default.css" rel="stylesheet">
-{% endblock %}
-{% block styles %}
-
+<style>
+    .header-subtitle {
+        font-style: normal;
+    }
+    .header-subtitle a {
+        color: #eee;
+        text-decoration: underline;
+    }
+    .header-subtitle a:hover {
+        color: #fff;
+        background: none;
+    }
+</style>
 {% endblock %}
 
 {% block header_title %}
@@ -16,8 +26,22 @@
 
 {% block data %}
 <p class="header-date">
-    时间： {{ data.datetime }}, 分类： <a href="#">{{ data.category }}</a>
+    <span class="post-time">
+        <i class="demo-icon icon-calendar"></i> 发表于{{ data.datetime }}
+    </span>
+    <span class="post-category">
+        <i class="demo-icon icon-folder-empty"></i> 分类：
+        <a href="/category/{{ data.category }}/">{{ data.category }}</a>
+    </span>
 </p>
+{% endblock %}
+
+{% block header_subtitle %}
+{% if data.tag %}
+{% for tag in data.tag %}
+<a href="/tag/{{tag}}/"><i class="demo-icon icon-tags"></i> {{ tag }}</a>
+{% endfor %}
+{% endif %}
 {% endblock %}
 
 {% block content %}

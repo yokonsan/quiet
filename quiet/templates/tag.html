@@ -9,11 +9,18 @@
 {{ title }}
 {% endblock %}
 
+{% block header_subtitle %}
+该标签的文章都在这了
+{% endblock %}
+
 {% block content %}
+<h2>标签文章</h2>
 {% if posts %}
-{% for post in posts %}
-<ul>
-    <li>{{post.title}}</li>
+{% for p in posts %}
+<ul class="post-list">
+    <li class="post-item">
+        <a href="/post/{{p.datetime.split('-')[0]}}/{{p.datetime.split('-')[1]}}/{{p.url}}" class="post-link">{{p.title}}</a>
+    </li>
 </ul>
 {% endfor %}
 {% endif %}
