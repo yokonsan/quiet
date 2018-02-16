@@ -1,9 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-import os
 import codecs
-import shutil
 import shelve
 from datetime import datetime
 
@@ -23,11 +21,18 @@ class Generate(object):
         self._pages = []
         self._tags = []
         self._categories = []
-        try:
-            self._default_adder_id = self._posts[-1].get('id') + 1
-        except:
-            self._default_adder_id = 100
         self.env = Environment(loader=FileSystemLoader("./quiet/templates"))
+
+    @property
+    def default_adder_id(self):
+        """
+        添加一个自增的文章 id
+        """
+        try:
+            max_id = self._posts[-1].get('id') + 1
+        except:
+            max_id = 100
+        return max_id
 
     def dump_data(self):
         """
@@ -36,7 +41,7 @@ class Generate(object):
         """
         dat =shelve.open(BLOG_DAT)
         dat['post_data'] = self._posts
-        dat['pag_data'] = self._pages
+        dat['page_data'] = self._pages
         dat['tag_data'] = self._tags
         dat['category_data'] = self._categories
         dat.close()
@@ -77,7 +82,6 @@ class Generate(object):
             os.makedirs(generated)
         with codecs.open(generated + '/' + filename, 'w', 'utf-8') as f:
             f.write(html)
-            print('保存成功：', file)
 
     def _set_post_filename(self, filename):
         """
@@ -282,8 +286,8 @@ class Generate(object):
         category = meta.get('category')[0] or DEFAULT_CATEGORY
         title = meta.get('title')[0] or os.path.splitext(os.path.basename(file))[0]
         summary = meta.get('summary')[0] or None
-        url = meta.get('url')[0] or str(self._default_adder_id)+'.html'
-        id = self._default_adder_id
+        url = meta.get('url')[0] or str(self.default_adder_id)+'.html'
+        id = self.default_adder_id
 
         self.update_tags(tag, id)
         self.update_categories(category, id)
@@ -341,18 +345,8 @@ class Generate(object):
         self.generate_page()
         self.dump_data()
 
-    def generate_upload(self, file, file_type):
-        """
-        上传文件成功后，自动根据文件名找到文件，生成 html，更新博客
-        :param file:
-        :return:
-        """
-        html = self.markdown_to_html(file, file_type)
-        self.save_post_path(file, html)
-        self.dump_data()
-
-    def __call__(self, file, file_type):
-        self.generate_upload(file, file_type)
+    def __call__(self):
+        self.main()
 
 # if __name__ == '__main__':
 #     gen = Generate()
