@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header_title %}
+上传页面
+{% endblock %}
+
+{% block header_subtitle %}
+上传 markdown 文件
+{% endblock %}
+
+{% block content %}
+<form id="upload_form" action="/admin/upload/page" method="post" enctype="multipart/form-data">
+    <p><input id="md-file" type="file" name="file"></p>
+    <input id="submit" type="submit" value="上传" class="submit-btn">
+</form>
+
+<p>上传文件可能需要一些时间，请耐心等待哦。</p>
+
+{% endblock %}
