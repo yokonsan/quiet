@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-hans">
+<head>
+	<meta charset="UTF-8">
+	<title>标签: Python - 安静</title>
+
+	
+<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../static/images/favicon.ico}" type="image/x-icon">
+<link rel="stylesheet" href="../static/css/blog.css">
+
+</head>
+<body>
+	<div id="header">
+		<div class="header-container">
+			<div class="header-nav">
+				<div class="header-logo">
+					<a href="/" class="float-left">
+						Quiet 个人博客
+					</a>
+				</div>
+				<div class="nav float-right">
+					<a href="/">首页</a>
+					<a href="/categories">分类</a>
+					<a href="/tags">标签</a>
+					<a href="/page/about">关于</a>
+				</div>
+			</div>
+
+			<div class="header-wrapper">
+				<div class="header-content">
+					<h1 class="header-title">
+						
+标签: Python
+
+					</h1>
+					
+					<div class="underline"></div>
+					<p class="header-subtitle">
+						
+该标签的文章都在这了
+
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="main">
+		<div class="main-container">
+			
+<h2>标签文章</h2>
+
+
+<ul class="post-list">
+    <li class="post-item">
+        <a href="/post/2018/02/understand-python-web-dev" class="post-link">理解Python的Web开发</a>
+    </li>
+</ul>
+
+
+
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="footer-container">
+			<p>
+				©2018 <a href="#">Quiet</a> 基于 flask 框架的 quiet 构建
+			</p>
+			<p>
+				<a href="#">备案号</a>
+			</p>
+			<p id="js-running">
+			</p>
+		</div>
+	</div>
+
+	<script>
+	var startTime="2018-02-01";var calculationTime=function(startTime){var s1=new Date(startTime.replace(/-/g,"/")),s2=new Date(),runTime=parseInt((s2.getTime()-s1.getTime())/1000);var year=Math.floor(runTime/86400/365);runTime=runTime%(86400*365);var month=Math.floor(runTime/86400/30);runTime=runTime%(86400*30);var day=Math.floor(runTime/86400);runTime=runTime%86400;var hour=Math.floor(runTime/3600);runTime=runTime%3600;var minute=Math.floor(runTime/60);runTime=runTime%60;var second=runTime;document.querySelector(".runningTime > .year").innerText=year;document.querySelector(".runningTime > .month").innerText=month;document.querySelector(".runningTime > .day").innerText=day;document.querySelector(".runningTime > .hour").innerText=hour;document.querySelector(".runningTime > .minute").innerText=minute;document.querySelector(".runningTime > .second").innerText=second};setInterval("calculationTime(startTime)",1000);var node = document.createElement("span");node.innerHTML = '该站点运行了<label class="year">0</label>年<label class="month">0</label>月<label class="day">0</label>日<label class="hour">0</label>时<label class="minute">0</label>分<label class="second">0</label>秒';node.className = "runningTime";document.getElementById("js-running").appendChild(node);
+	</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-hans">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello world - 安静</title>
+
+	
+<link rel="shortcut icon" href="../../../static/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../../static/images/favicon.ico}" type="image/x-icon">
+<link href="../../../static/css/blog.css" rel="stylesheet">
+<link href="../../../static/lib/fontello.css" rel="stylesheet">
+<link href="../../../static/lib/pygments/default.css" rel="stylesheet">
+<style>
+    .header-subtitle {
+        font-style: normal;
+    }
+    .header-subtitle a {
+        color: #eee;
+        text-decoration: underline;
+    }
+    .header-subtitle a:hover {
+        color: #fff;
+        background: none;
+    }
+</style>
+
+</head>
+<body>
+	<div id="header">
+		<div class="header-container">
+			<div class="header-nav">
+				<div class="header-logo">
+					<a href="/" class="float-left">
+						Quiet 个人博客
+					</a>
+				</div>
+				<div class="nav float-right">
+					<a href="/">首页</a>
+					<a href="/categories">分类</a>
+					<a href="/tags">标签</a>
+					<a href="/page/about">关于</a>
+				</div>
+			</div>
+
+			<div class="header-wrapper">
+				<div class="header-content">
+					<h1 class="header-title">
+						
+Hello world
+
+					</h1>
+					
+<p class="header-date">
+    <span class="post-time">
+        <i class="demo-icon icon-calendar"></i> 发表于2018-02-15
+    </span>
+    <span class="post-category">
+        <i class="demo-icon icon-folder-empty"></i> 分类：
+        <a href="/category/随笔/">随笔</a>
+    </span>
+</p>
+
+					<div class="underline"></div>
+					<p class="header-subtitle">
+						
+
+
+<a href="/tag/测试"><i class="demo-icon icon-tags"></i> 测试</a>
+
+<a href="/tag/随笔"><i class="demo-icon icon-tags"></i> 随笔</a>
+
+
+
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="main">
+		<div class="main-container">
+			
+<h2>Hello world</h2>
+<p>这是一篇测试文章，测试<code>markdown</code>语法是否支持。</p>
+<p>代码片段：</p>
+<div class="highlight"><pre><span class="c"># hello.py</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Hello world!&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>这是一个列表：</p>
+<ul>
+<li>第一条</li>
+<li>第二条<ol>
+<li>第二条第一条</li>
+<li>第二天第二条</li>
+</ol>
+</li>
+</ul>
+<p>这是一段话：</p>
+<p>青青子衿，<strong>悠悠我心</strong>，<strong>但为君故</strong>，~~沉吟至今~~。</p>
+<blockquote>
+<p>慨当以慷，忧思难忘
+何以解忧？唯有杜康</p>
+</blockquote>
+<p>这是一个链接：<a href="http://www.yukunweb.com">yukunweb.com</a></p>
+<p>这是一张图片：<img alt="cat" src="http://imgout.ph.126.net/57363048/pexels-photo-416208.jpg" /></p>
+<p>还支持表格：</p>
+<table>
+<thead>
+<tr>
+<th align="left">默认列</th>
+<th align="left">左对齐列</th>
+<th align="right">右对齐列</th>
+<th align="center">居中列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Hello</td>
+<td align="left">Hello</td>
+<td align="right">Hello</td>
+<td align="center">Hello</td>
+</tr>
+</tbody>
+</table>
+
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="footer-container">
+			<p>
+				©2018 <a href="#">Quiet</a> 基于 flask 框架的 quiet 构建
+			</p>
+			<p>
+				<a href="#">备案号</a>
+			</p>
+			<p id="js-running">
+			</p>
+		</div>
+	</div>
+
+	<script>
+	var startTime="2018-02-01";var calculationTime=function(startTime){var s1=new Date(startTime.replace(/-/g,"/")),s2=new Date(),runTime=parseInt((s2.getTime()-s1.getTime())/1000);var year=Math.floor(runTime/86400/365);runTime=runTime%(86400*365);var month=Math.floor(runTime/86400/30);runTime=runTime%(86400*30);var day=Math.floor(runTime/86400);runTime=runTime%86400;var hour=Math.floor(runTime/3600);runTime=runTime%3600;var minute=Math.floor(runTime/60);runTime=runTime%60;var second=runTime;document.querySelector(".runningTime > .year").innerText=year;document.querySelector(".runningTime > .month").innerText=month;document.querySelector(".runningTime > .day").innerText=day;document.querySelector(".runningTime > .hour").innerText=hour;document.querySelector(".runningTime > .minute").innerText=minute;document.querySelector(".runningTime > .second").innerText=second};setInterval("calculationTime(startTime)",1000);var node = document.createElement("span");node.innerHTML = '该站点运行了<label class="year">0</label>年<label class="month">0</label>月<label class="day">0</label>日<label class="hour">0</label>时<label class="minute">0</label>分<label class="second">0</label>秒';node.className = "runningTime";document.getElementById("js-running").appendChild(node);
+	</script>
+</body>
+</html>

@@ -1,3 +1,6 @@
+import os
+
+
 # 个人站点配置信息
 # 站点标题
 SITE_TITLE = 'Quiet 个人博客'
@@ -18,4 +21,9 @@ DEFAULT_TAG = ['其他']
 
 # 存放 shelve 数据文件
 BLOG_DAT = './quiet/static/generated/data.dat'
+
+# 管理员信息
+# 登录名
+ADMIN_USERNAME = os.getenv('ADMIN_USERNAME') or 'quiet'
+ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD') or 'password'
 
