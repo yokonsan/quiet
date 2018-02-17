@@ -40,7 +40,11 @@ tag: 测试 // 文章标签
 
 ## 样式
 
+文章页：
+
 ![demo](http://opxib6gmc.bkt.clouddn.com/quiet.jpg)
+
+首页：
 
 ![demo](http://opxib6gmc.bkt.clouddn.com/quiet2.jpg)
 
