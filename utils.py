@@ -3,7 +3,6 @@
 
 import shelve
 
-
 from config import BLOG_DAT
 
 

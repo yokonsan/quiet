@@ -281,12 +281,12 @@ class Generate(object):
         """
         # 默认今天日期
         now = datetime.now().strftime('%Y-%m-%d')
-        date = meta.get('datetime')[0] or now
+        date = meta.get('datetime')[0] if meta.get('datetime') else now
         tag = meta.get('tag') or DEFAULT_TAG
-        category = meta.get('category')[0] or DEFAULT_CATEGORY
-        title = meta.get('title')[0] or os.path.splitext(os.path.basename(file))[0]
-        summary = meta.get('summary')[0] or None
-        url = meta.get('url')[0] or str(self.default_adder_id)+'.html'
+        category = meta.get('category')[0] if meta.get('category') else DEFAULT_CATEGORY
+        title = meta.get('title')[0] if meta.get('title') else os.path.splitext(os.path.basename(file))[0]
+        summary = meta.get('summary')[0] if meta.get('summary') else '无描述'
+        url = meta.get('url')[0] if meta.get('url') else str(self.default_adder_id)+'.html'
         id = self.default_adder_id
 
         self.update_tags(tag, id)
