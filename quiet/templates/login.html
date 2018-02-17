@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head %}
+{% include "_admin_head.html" %}
+{% endblock %}
+
+{% block header_title %}
+管理员登录
+{% endblock %}
+
+{% block header_subtitle %}
+你好啊，管理员
+{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+{% with messages = get_flashed_messages() %}
+    <div style="color: red;">{{ messages[0] }}</div>
+<p></p>
+{% endwith %}
+<form action="/admin/login" method="POST">
+    <input type="text" name="username" id="username" placeholder="Username">
+    <input type="password" name="password" id="password" placeholder="Password">
+    <input type="submit" name="submit">
+</form>
+
+{% endblock %}

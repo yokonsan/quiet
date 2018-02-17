@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
-<link rel="shortcut icon" href="../../../static/images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="../../../static/images/favicon.ico}" type="image/x-icon">
-<link href="../../../static/css/blog.css" rel="stylesheet">
-<link href="../../../static/lib/fontello.css" rel="stylesheet">
-<link href="../../../static/lib/pygments/default.css" rel="stylesheet">
+{% include "_admin_head.html" %}
 <style>
     .header-subtitle {
         font-style: normal;
@@ -31,7 +27,7 @@
     </span>
     <span class="post-category">
         <i class="demo-icon icon-folder-empty"></i> 分类：
-        <a href="/category/{{ data.category }}/">{{ data.category }}</a>
+        <a href="/category/{{ data.category }}">{{ data.category }}</a>
     </span>
 </p>
 {% endblock %}

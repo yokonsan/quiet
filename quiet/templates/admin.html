@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block head %}
+{% include "_admin_head.html" %}
+{% endblock %}
+
+{% block header_title %}
+管理后台
+{% endblock %}
+
+{% block header_subtitle %}
+选择上传类型
+{% endblock %}
+
+{% block content %}
+
+<p>
+    <a href="/admin/upload/post">
+        上传文章
+    </a>
+</p>
+<p>
+    <a href="/admin/upload/page">
+        上传页面
+    </a>
+</p>
+<p>
+    <a href="/admin/logout">
+        登出
+    </a>
+</p>
+
+{% endblock %}
