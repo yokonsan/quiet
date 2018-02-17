@@ -6,12 +6,6 @@ from flask import send_from_directory
 from . import app
 
 
-@app.route('/blog.css')
-def blog_css():
-
-    return send_from_directory('static', 'css/blog.css')
-
-
 @app.route('/')
 @app.route('/index')
 def index():
