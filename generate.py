@@ -247,6 +247,7 @@ class Generate(object):
                     template = self.env.get_template('tag.html')
                     html = template.render(
                         posts=tag_posts,
+                        tag=t,
                         title='标签: ' + t
                     )
                     filename = t + '.html'
@@ -267,6 +268,7 @@ class Generate(object):
         template = self.env.get_template('category.html')
         html = template.render(
             posts=cate_posts,
+            category=category,
             title='分类: ' + category
         )
         filename = category + '.html'
