@@ -160,10 +160,10 @@ class Generate(object):
         tags = [t['tag'] for t in self._tags]
         for i in tag:
             if i not in tags:
-                dict = {'post_id': []}
-                dict['tag'] = i
-                dict['post_id'].append(post_id)
-                self._tags.append(dict)
+                group = {}
+                group['tag'] = i
+                group['post_id'] = [post_id]
+                self._tags.append(group)
             elif i in tags:
                 index = tags.index(i)
                 self._tags[index]['post_id'].append(post_id)
@@ -175,10 +175,10 @@ class Generate(object):
         categories = [t['category'] for t in self._categories]
 
         if category not in categories:
-            dict = {'post_id': []}
-            dict['category'] = category
-            dict['post_id'].append(post_id)
-            self._categories.append(dict)
+            group = {}
+            group['category'] = category
+            group['post_id'] = [post_id]
+            self._categories.append(group)
         elif category in categories:
             index = categories.index(category)
             self._categories[index]['post_id'].append(post_id)
@@ -207,7 +207,6 @@ class Generate(object):
         template = self.env.get_template('tags.html')
         tags = [t['tag'] for t in self._tags]
         counts = [len(t['post_id']) for t in self._tags]
-        dict = {}
         data = []
         for t, c in zip(tags, counts):
             dict = {
@@ -284,7 +283,7 @@ class Generate(object):
         # 默认今天日期
         now = datetime.now().strftime('%Y-%m-%d')
         date = meta.get('datetime')[0] if meta.get('datetime') else now
-        tag = meta.get('tag') or DEFAULT_TAG
+        tag = meta.get('tag', DEFAULT_TAG)
         category = meta.get('category')[0] if meta.get('category') else DEFAULT_CATEGORY
         title = meta.get('title')[0] if meta.get('title') else os.path.splitext(os.path.basename(file))[0]
         summary = meta.get('summary')[0] if meta.get('summary') else '无描述'

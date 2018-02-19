@@ -43,6 +43,12 @@ tag: 测试 // 文章标签
 python run.py
 ```
 
+### 后台上传文件
+
+管理员信息需要配置`config.py`文件，登录地址：`/admin`
+
+上传文件地址：`/admin/upload/post`
+
 ## 样式
 
 文章页：
