@@ -4,6 +4,8 @@
 
 一个支持上传 markdown 文件生成 html 的 flask 静态轻博客，支持`table`和`Meta`信息。依赖少，配置简单，使用方便。
 
+实现博客：[基于flask的静态博客](https://www.yukunweb.com/2018/2/static-blog-based-on-flask/)
+
 ## 使用
 
 直接下载本项目文件，并安装依赖:

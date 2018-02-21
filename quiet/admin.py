@@ -94,6 +94,7 @@ def upload_post():
 
 
 @admin.route('/upload/page', methods=['GET', 'POST'])
+@login_required
 def upload_page():
     """
     支持用户上传 md 文件并生成 html

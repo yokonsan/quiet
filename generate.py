@@ -315,8 +315,7 @@ class Generate(object):
         if filename in names:
             index = names.index(filename)
             date = self._posts[index].get('datetime')
-            year = date.split('-')[0]
-            month = date.split('-')[1]
+            year, month, _ = map(str, date.split('-'))
             self.save_html(file, html, 'post', year, month)
 
     def generate_post(self):
